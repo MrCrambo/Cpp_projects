@@ -11,27 +11,30 @@
 
 using namespace std;
 
-int main(int argc, const char * argv[])  {
+int main(int argc, const char * argv[])  
+{
     // find the second entrance of 'f' symbol
     string text;
-    int f_entrance = 0, id = 0;
+    int f_entrance = -2;
     cin >> text;
-//    for (int i = 0; i < text.size(); i++) {
-//        if (text.at(i) == 'f' && f_entrance != 2)
-//        {
-//            f_entrance++;
-//            id = i;
-//        }
-//    }
-//
-//    if (f_entrance == 2) {
-//        cout << id;
-//    } else if (f_entrance == 1){
-//        cout << -1;
-//    } else {
-//        cout << -2;
-//    }
-    cout << text;
+
+    for (int i = 0; i < text.size(); i++)
+    {
+        if (text[i] == 'f')
+        {
+            if (f_entrance == -2)
+            {
+                f_entrance = -1;
+            }
+            else
+            {
+                f_entrance = i;
+                break;
+            }
+        }  
+    }
+
+    cout << f_entrance;
     
     return 0;
 }
