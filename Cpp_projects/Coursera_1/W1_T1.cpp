@@ -1,3 +1,11 @@
+//
+//  W1_T1.cpp
+//  Cpp_projects
+//
+//  Created by mrcrambo on 13/02/2020.
+//  Copyright © 2020 mrcrambo. All rights reserved.
+//
+
 #include <iostream>
 #include <cmath>
 
