@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -18,6 +19,18 @@ bool IsPalindrom(string text)
     }
     
     return true;
+}
+
+vector<string> PalindromFilter(vector<string> words, int minLength)
+{
+    vector<string> palindroms;
+    for (string word: words)
+    {
+        if (word.size() >= minLength && IsPalindrom(word))
+            palindroms.push_back(word);
+    }
+    
+    return palindroms;
 }
 
 int main()

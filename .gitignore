@@ -33,3 +33,4 @@
 *.pbxproj
 *.pbxproj
 *.xcuserstate
+.vscode/settings.json
