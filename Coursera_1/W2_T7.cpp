@@ -6,6 +6,8 @@ using namespace std;
 
 int main()
 {
+    // add new routes and print already exist routes id
+
     int count;
     cin >> count;
     map<vector<string>, int > routes;
@@ -13,14 +15,12 @@ int main()
     for (int i = 0; i < count; i++)
     {
         int stop_count;
-        vector<string> stops;
+        vector<string> stops(stop_count);
         cin >> stop_count;
 
-        for (int j = 0; j < stop_count; j++)
+        for (string& stop : stops) 
         {
-            string stop;
             cin >> stop;
-            stops.push_back(stop);
         }
 
         if (routes.count(stops) == 0)
