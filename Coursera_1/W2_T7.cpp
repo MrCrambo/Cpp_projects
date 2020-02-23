@@ -15,8 +15,9 @@ int main()
     for (int i = 0; i < count; i++)
     {
         int stop_count;
-        vector<string> stops(stop_count);
         cin >> stop_count;
+
+        vector<string> stops(stop_count);
 
         for (string& stop : stops) 
         {
