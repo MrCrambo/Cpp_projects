@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    // calculating the average temperature (task for types of int)
     vector<int> temperatures;
     int64_t days_count = 0, avg = 0, avg_count = 0;
     string expr = "";
