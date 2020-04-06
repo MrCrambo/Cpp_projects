@@ -1,7 +1,5 @@
 # Cpp_projects
 
-Here will be the code for all of my C++ projects and Coursera course tasks.
-
 ### [Coursera specialization](https://www.coursera.org/specializations/c-plus-plus-modern-development)
 
 C++ specialization which consists 5 courses, where each course 5 weeks length and has a final project.
