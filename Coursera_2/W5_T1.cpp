@@ -2,7 +2,8 @@
 
 using namespace std;
 
-class Animal{
+class Animal
+{
 public:
     Animal(const string& n) 
         :Name(n)
@@ -11,7 +12,8 @@ public:
     const string Name;
 };
 
-class Dog : public Animal{
+class Dog : public Animal
+{
 public:
     Dog(const string& n)
         :Animal(n)
