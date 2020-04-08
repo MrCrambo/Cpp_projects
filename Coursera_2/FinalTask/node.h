@@ -6,7 +6,8 @@
 #include <string>
 #include <memory>
 
-class Node {
+class Node 
+{
 public:
     virtual bool Evaluate(const Date& date, const std::string& event) const = 0;
 
@@ -14,12 +15,14 @@ protected:
 
 };
 
-class EmptyNode:public Node{
+class EmptyNode:public Node
+{
 public:
     bool Evaluate(const Date& date, const std::string& event) const override  {return true;}
 };
 
-class EventComparisonNode:public Node{
+class EventComparisonNode:public Node
+{
 public:
     EventComparisonNode(Comparison operation, const std::string &event);
     bool Evaluate(const Date& date, const std::string& event) const override;
@@ -29,7 +32,8 @@ private:
     const std::string event_;
 };
 
-class DateComparisonNode:public Node{
+class DateComparisonNode:public Node
+{
 public:
     DateComparisonNode(Comparison operation, const Date &date);
     bool Evaluate(const Date& date, const std::string& event) const override;
@@ -39,7 +43,8 @@ private:
     const Date date_;
 };
 
-class LogicalOperationNode:public Node{
+class LogicalOperationNode:public Node
+{
 public:
     LogicalOperationNode(LogicalOperation operation, std::shared_ptr<Node> left, std::shared_ptr<Node> right);
     bool Evaluate(const Date& date, const std::string& event) const override;
