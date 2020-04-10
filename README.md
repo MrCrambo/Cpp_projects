@@ -15,5 +15,15 @@ Introduction to the C++ language and lot of tasks with using of basic attributes
  - [x] Week 4 - Threads, Exceptions, Overriding.
  - [x] Week 5 - Final task.
  
- #### [Course 2](https://www.coursera.org/learn/c-plus-plus-yellow/)
+#### [Course 2](https://www.coursera.org/learn/c-plus-plus-yellow/)
+ 
+ Continue of the first course, more about classes, algorithms and intro to pointers and templates.
 
+ - [x] Week 1 - Templates, typles, pairs.
+ - [x] Week 2 - Unit testings and unit tests framework creating.
+ - [x] Week 3 - Headers and project structuring.
+ - [x] Week 4 - Iterators, pointers, algorithms, queue and dequeue.
+ - [x] Week 4 - Inheritance and polymorphism.
+ - [x] Week 6 - Final task.
+ 
+#### [Course 3](https://www.coursera.org/learn/c-plus-plus-red)
