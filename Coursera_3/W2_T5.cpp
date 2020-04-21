@@ -1,0 +1,138 @@
+#include <iostream>
+#include <cstdint>
+#include <vector>
+#include <queue>
+#include <map>
+
+#include "test_runner.h"
+#include "profile.h"
+
+using namespace std;
+
+struct Event {
+    int64_t time;
+    string hotel_name;
+    unsigned int client_id;
+    int room_count;
+};
+
+class BookingManager {
+private:
+    queue<Event> events;
+    map<string, map<uint64_t, uint64_t>> clients;
+    map<string, uint64_t> rooms;
+
+    void Adjust(int64_t current_time) {
+        while (!events.empty()
+            && events.front().time + 86400 <= current_time)
+        {
+        auto it = events.front();
+        clients[it.hotel_name][it.client_id] -= it.room_count;
+        if (clients[it.hotel_name][it.client_id] == 0) {
+            clients[it.hotel_name].erase(it.client_id);
+        }
+
+        rooms[it.hotel_name] -= it.room_count;
+
+        events.pop();
+        }
+    }
+
+public:
+    BookingManager() {}
+
+    void Book(int64_t time, const string& hotel_name,
+                unsigned int client_id, int room_count)
+    {
+        events.push({time, hotel_name, client_id, room_count});
+        clients[hotel_name][client_id] += room_count;
+        rooms[hotel_name] += room_count;
+
+        Adjust(time);
+    }
+
+    uint64_t GetClients(const string& hotel_name) {
+        return clients[hotel_name].size();
+    }
+
+    uint64_t GetRooms(const string& hotel_name) {
+        return rooms[hotel_name];
+    }
+
+};
+
+struct TestQuery {
+    string query;
+    int64_t time;
+    string hotel_name;
+    unsigned int client_id;
+    int room_count;
+};
+
+void testBookingManager() {
+    vector<TestQuery> queries =
+    {
+        {"CLIENTS", 0, "Marriott", 0, 0},
+        {"ROOMS", 0, "Marriott", 0, 0},
+        {"BOOK", 10, "FourSeasons", 1, 2},
+        {"BOOK", 10, "Marriott", 1, 1},
+        {"BOOK", 86409, "FourSeasons", 2, 1},
+        {"CLIENTS", 0, "FourSeasons", 0, 0},
+        {"ROOMS", 0, "FourSeasons", 0, 0},
+        {"CLIENTS", 0, "Marriott", 0, 0},
+        {"BOOK", 86410, "Marriott", 2, 10},
+        {"ROOMS", 0, "FourSeasons", 0, 0},
+        {"ROOMS", 0, "Marriott", 0, 0}
+    };
+
+    BookingManager manager;
+    vector<uint64_t> result;
+    for (const auto& q : queries) {
+        if (q.query == "BOOK") {
+        manager.Book(q.time, q.hotel_name, q.client_id, q.room_count);
+        } else if (q.query == "CLIENTS") {
+        result.push_back(manager.GetClients(q.hotel_name));
+        } else {
+        result.push_back(manager.GetRooms(q.hotel_name));
+        }
+    }
+
+    vector<uint64_t> expected = {0, 0, 2, 3, 1, 1, 10};
+    ASSERT_EQUAL(result, expected);
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    BookingManager manager;
+    int query_count;
+    cin >> query_count;
+
+    for (size_t i = 0; i < query_count; ++i) {
+        string query_type;
+        cin >> query_type;
+
+        string hotel_name;
+        if (query_type == "BOOK") {
+        uint64_t time;
+        unsigned int client_id;
+        int room_count;
+
+        cin >> time >> hotel_name
+            >> client_id >> room_count;
+
+        manager.Book(time, hotel_name, client_id, room_count);
+
+        } else {
+        cin >> hotel_name;
+        if (query_type == "CLIENTS") {
+            cout << manager.GetClients(hotel_name) << '\n';
+        } else if (query_type == "ROOMS") {
+            cout << manager.GetRooms(hotel_name) << '\n';
+        }
+        }
+    }
+
+    return 0;
+}
