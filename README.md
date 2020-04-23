@@ -1,4 +1,4 @@
-# Cpp_projects
+# C++ Coursera courses problem solutions and Leetcode problem solutions.
 
 ### [Coursera specialization](https://www.coursera.org/specializations/c-plus-plus-modern-development)
 
