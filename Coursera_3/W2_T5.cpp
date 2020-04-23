@@ -69,38 +69,6 @@ struct TestQuery {
     int room_count;
 };
 
-void testBookingManager() {
-    vector<TestQuery> queries =
-    {
-        {"CLIENTS", 0, "Marriott", 0, 0},
-        {"ROOMS", 0, "Marriott", 0, 0},
-        {"BOOK", 10, "FourSeasons", 1, 2},
-        {"BOOK", 10, "Marriott", 1, 1},
-        {"BOOK", 86409, "FourSeasons", 2, 1},
-        {"CLIENTS", 0, "FourSeasons", 0, 0},
-        {"ROOMS", 0, "FourSeasons", 0, 0},
-        {"CLIENTS", 0, "Marriott", 0, 0},
-        {"BOOK", 86410, "Marriott", 2, 10},
-        {"ROOMS", 0, "FourSeasons", 0, 0},
-        {"ROOMS", 0, "Marriott", 0, 0}
-    };
-
-    BookingManager manager;
-    vector<uint64_t> result;
-    for (const auto& q : queries) {
-        if (q.query == "BOOK") {
-        manager.Book(q.time, q.hotel_name, q.client_id, q.room_count);
-        } else if (q.query == "CLIENTS") {
-        result.push_back(manager.GetClients(q.hotel_name));
-        } else {
-        result.push_back(manager.GetRooms(q.hotel_name));
-        }
-    }
-
-    vector<uint64_t> expected = {0, 0, 2, 3, 1, 1, 10};
-    ASSERT_EQUAL(result, expected);
-}
-
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
