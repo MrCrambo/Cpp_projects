@@ -27,3 +27,16 @@ Introduction to the C++ language and lot of tasks with using of basic attributes
  - [x] Week 6 - Final task.
  
 #### [Course 3](https://www.coursera.org/learn/c-plus-plus-red)
+
+
+
+
+#### Shaders
+
+install on vscode `glsl-canvas`, install from github `glslViewer`
+
+```bash
+brew install glslViewer
+```
+
+for running glsl-canvas type cmd-shift-P and enter `Show glslCanvas`
