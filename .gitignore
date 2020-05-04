@@ -33,4 +33,11 @@
 *.pbxproj
 *.pbxproj
 *.xcuserstate
+*.plist
+*.xcworkspacedata
 .vscode/settings.json
+
+# glfw and glew
+
+OpenGL/glew
+OpenGL/glfw
