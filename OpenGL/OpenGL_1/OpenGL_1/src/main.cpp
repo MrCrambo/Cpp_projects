@@ -150,11 +150,12 @@ int main(void)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
     ShaderSource source = parseShader("basic.shader");
-    std::cout << "VERTEX" << std::endl;
-    std::cout << source.vertex << std::endl;
     
     unsigned int shader = createShader(source.vertex, source.fragment);
     glUseProgram(shader);
+    
+    int location = __glewGetUniformLocation(shader, "u_color");
+    __glewUniform4f(location, 0.8f, 0.1f, 0.1f, 1.f);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
