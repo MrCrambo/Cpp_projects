@@ -28,15 +28,25 @@ Introduction to the C++ language and lot of tasks with using of basic attributes
  
 #### [Course 3](https://www.coursera.org/learn/c-plus-plus-red)
 
+ Continue of the first two courses.
 
-
+ - [x] Week 1 - Macro and class templates.
+ - [x] Week 2 - Code optimization, algorithm complexity and input/outputs.
+ - [x] Week 3 - Memory.
+ - [x] Week 4 - Containers.
+ - [x] Week 4 - Move semantics and basic multithreading.
+ - [x] Week 6 - Final task.
 
 ### Shaders
 
-install on vscode `glsl-canvas`, install from github `glslViewer`
+Install on vscode `glsl-canvas`, install from github `glslViewer`
 
 ```bash
 brew install glslViewer
 ```
 
-for running glsl-canvas type cmd-shift-P and enter `Show glslCanvas`
+For running glsl-canvas type cmd-shift-P and enter `Show glslCanvas`
+
+### OpenGL
+
+Open GL projects.
