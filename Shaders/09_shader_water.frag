@@ -20,5 +20,5 @@ void main()
         coord.y -= sin(coord.x + cos(len)) + sin(u_time / 8.);
     }
 
-    gl_FragColor = vec4(cos(len) / 12., cos(len) / 5., cos(len), 1.);
+    gl_FragColor = vec4(cos(len) / 2., cos(len) / 8., cos(len), 10.);
 }
