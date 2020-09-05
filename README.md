@@ -1,4 +1,4 @@
-# C++ Coursera courses problem solutions and Leetcode problem solutions.
+# C++ Coursera courses problem solutions and LeetСode problem solutions.
 
 ### [Coursera specialization](https://www.coursera.org/specializations/c-plus-plus-modern-development)
 
@@ -36,6 +36,10 @@ Introduction to the C++ language and lot of tasks with using of basic attributes
  - [x] Week 4 - Containers.
  - [x] Week 4 - Move semantics and basic multithreading.
  - [x] Week 6 - Final task.
+ 
+### Leetcode problems
+
+Has explanation inside.
 
 ### Shaders
 
