@@ -14,14 +14,13 @@ struct AdjList
     struct Node *head;
 };
 
-class Graph
-{
+class AdjListGraph {
 public:
-    Graph(int count)
+    AdjListGraph(int verticesCount)
     {
-        this->verticesCount = count;
-        array = new AdjList [count];
-        for (int i = 0; i < count; ++i)
+        this->verticesCount = verticesCount;
+        array = new AdjList [verticesCount];
+        for (int i = 0; i < verticesCount; ++i)
             array[i].head = NULL;
     }
 
@@ -63,6 +62,54 @@ public:
 private:
     int verticesCount;
     struct AdjList* array;
+};
+
+class AdjMatrixGraph {
+public:
+    AdjMatrixGraph(int verticesCount)
+    {
+        this->verticesCount = verticesCount;
+        adjMatrix = new bool*[verticesCount];
+        for (int i = 0; i < verticesCount; i++)
+        {
+            adjMatrix[i] = new bool[verticesCount];
+            for (int j = 0; j < verticesCount; j++)
+                adjMatrix[i][j] = false;
+        }
+    }
+
+    void addEdge(int i, int j)
+    {
+        adjMatrix[i][j] = true;
+        adjMatrix[j][i] = true;
+    }
+
+    void removeEdge(int i, int j)
+    {
+        adjMatrix[i][j] = false;
+        adjMatrix[j][i] = false;
+    }
+
+    void toString()
+    {
+        for (int i = 0; i < verticesCount; i++)
+        {
+            std::cout << i << " : ";
+            for (int j = 0; j < verticesCount; j++)
+                std::cout << adjMatrix[i][j] << " ";
+            std::cout << "\n";
+        }
+    }
+
+    ~AdjMatrixGraph()
+    {
+        for (int i = 0; i < verticesCount; i++)
+            delete[] adjMatrix[i];
+        delete[] adjMatrix;
+    }
+private:
+    bool** adjMatrix;
+    int verticesCount;
 };
 
 } } // algoruthms::graphs
