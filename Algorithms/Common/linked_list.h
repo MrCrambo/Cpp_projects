@@ -84,8 +84,10 @@ public:
     }
     
     T head() const
-    {
-        return mHead->mValue;
+    {   if (mHead)
+            return mHead->mValue;
+
+        return T();
     }
 
     Iterator<T> begin() const

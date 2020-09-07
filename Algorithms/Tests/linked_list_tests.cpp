@@ -1,4 +1,4 @@
-#include "../linked_list.h"
+#include "../Common/linked_list.h"
 #include <iostream>
 
 int main(int argc, char * argv[])
@@ -14,8 +14,6 @@ int main(int argc, char * argv[])
     list.append(7);
     std::cout << "Head is " << list.head() << " and size is " << list.size() << std::endl;
 
-    list.remove();
-    std::cout << "Head is " << list.head() << " and size is " << list.size() << std::endl;
     list.remove();
     std::cout << "Head is " << list.head() << " and size is " << list.size() << std::endl;
     list.remove();
