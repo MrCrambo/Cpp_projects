@@ -70,9 +70,11 @@ public:
     {
         this->verticesCount = verticesCount;
         adjMatrix = new bool*[verticesCount];
+        used = new bool[verticesCount];
         for (int i = 0; i < verticesCount; i++)
         {
             adjMatrix[i] = new bool[verticesCount];
+            used[i] = false;
             for (int j = 0; j < verticesCount; j++)
                 adjMatrix[i][j] = false;
         }
@@ -88,6 +90,17 @@ public:
     {
         adjMatrix[i][j] = false;
         adjMatrix[j][i] = false;
+    }
+
+    int dfs(int v)
+    {
+        used[v] = true;
+        for (int i = 0; i < verticesCount; i++)
+        {
+            if (adjMatrix[v][i] && !used[i])
+                dfs(i);
+        }
+        return v;
     }
 
     void toString()
@@ -110,6 +123,10 @@ public:
 private:
     bool** adjMatrix;
     int verticesCount;
+
+// for dfs
+private:
+    bool* used;
 };
 
 } } // algoruthms::graphs
