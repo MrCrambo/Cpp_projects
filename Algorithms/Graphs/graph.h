@@ -71,10 +71,12 @@ public:
         this->verticesCount = verticesCount;
         adjMatrix = new bool*[verticesCount];
         used = new bool[verticesCount];
+        color = new int[verticesCount];
         for (int i = 0; i < verticesCount; i++)
         {
             adjMatrix[i] = new bool[verticesCount];
             used[i] = false;
+            color[i] = 0;
             for (int j = 0; j < verticesCount; j++)
                 adjMatrix[i][j] = false;
         }
@@ -95,11 +97,15 @@ public:
     int dfs(int v)
     {
         used[v] = true;
+        color[v] = 1;
         for (int i = 0; i < verticesCount; i++)
         {
-            if (adjMatrix[v][i] && !used[i])
+            if (adjMatrix[v][i] && !used[i] && color[i] == 0)
                 dfs(i);
+
+            // cycle check if color[i] is 1
         }
+        color[v] = 2;
         return v;
     }
 
@@ -127,6 +133,7 @@ private:
 // for dfs
 private:
     bool* used;
+    int* color; // 0 - not entered; 1 - entered; 2 - left
 };
 
 } } // algoruthms::graphs
