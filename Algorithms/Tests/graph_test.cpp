@@ -12,9 +12,10 @@ int main(int argc, char * argv[])
 
     std::cout<< "Dfs from 0 is: " << gh.dfs(0) << std::endl;
 
-    auto path = gh.getPath(0, 3);
-    for (const auto& i: path)
+    std::vector<int> path = gh.getPath(0, 3);
+    for (int i: path)
         std::cout << i << " -> ";
+    std::cout << std::endl;
 
     return 0;
 }

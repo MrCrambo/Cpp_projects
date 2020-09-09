@@ -70,11 +70,11 @@ public:
     AdjMatrixGraph(int verticesCount)
     {
         this->verticesCount = verticesCount;
-        adjMatrix = new bool*[verticesCount];
+        adjMatrix = new int*[verticesCount];
 
         for (int i = 0; i < verticesCount; i++)
         {
-            adjMatrix[i] = new bool[verticesCount];
+            adjMatrix[i] = new int[verticesCount];
 
             used.push_back(false);
             color.push_back(0);
@@ -83,20 +83,32 @@ public:
             path.push_back(-1);
 
             for (int j = 0; j < verticesCount; j++)
-                adjMatrix[i][j] = false;
+                adjMatrix[i][j] = 0;
         }
     }
 
-    void addEdge(int i, int j)
+    void addEdge(int i, int j, int w = 1)
     {
-        adjMatrix[i][j] = true;
-        adjMatrix[j][i] = true;
+        if (i >= verticesCount ||
+            j >= verticesCount ||
+            i < 0 || j < 0)
+        {
+            exit(-1);
+        }
+        adjMatrix[i][j] = 1;
+        adjMatrix[j][i] = 1;
     }
 
     void removeEdge(int i, int j)
     {
-        adjMatrix[i][j] = false;
-        adjMatrix[j][i] = false;
+        if (i >= verticesCount ||
+            j >= verticesCount ||
+            i < 0 || j < 0)
+        {
+            exit(-1);
+        }
+        adjMatrix[i][j] = 0;
+        adjMatrix[j][i] = 0;
     }
 
     int dfs(int v)
@@ -117,6 +129,10 @@ public:
         return v;
     }
 
+    /*
+    **  Breadth First Search
+    **
+    */
     std::vector<int> bfs(int v)
     {
         if (v >= verticesCount)
@@ -141,10 +157,13 @@ public:
         return breadth;
     }
 
+    /*
+    ** Will not correctly search in case of having weights
+    */
     std::vector<int> getPath(int from, int to)
     {
         std::vector<int> p;
-        auto b = bfs(from);
+        std::vector<int> b = bfs(from);
         while (to != -1)
         {
             p.push_back(to);
@@ -171,7 +190,7 @@ public:
         delete[] adjMatrix;
     }
 private:
-    bool** adjMatrix;
+    int** adjMatrix;
     int verticesCount;
 
 // for dfs
