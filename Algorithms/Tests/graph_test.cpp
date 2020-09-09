@@ -13,7 +13,11 @@ int main(int argc, char * argv[])
  
     gh.toString();
 
-    std::cout<< "Dfs from 0 is: " << gh.dfs(0) << std::endl << std::endl;
+    std::cout<< "Dfs from 0 is: " << gh.dfs(0) << std::endl;
+
+    auto bfs = gh.bfs(5);
+    for (const auto& i: bfs)
+        std::cout << "Bfs value is: " << i << std::endl;
     // std::cout<< "Dfs from 1 is: " << gh.dfs(1) << std::endl << std::endl;
     // std::cout<< "Dfs from 2 is: " << gh.dfs(2) << std::endl << std::endl;
     // std::cout<< "Dfs from 3 is: " << gh.dfs(3) << std::endl << std::endl;

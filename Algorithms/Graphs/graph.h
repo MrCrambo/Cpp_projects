@@ -1,4 +1,5 @@
 #include <list>
+#include <vector>
 #include <iostream>
 
 namespace algorithms { namespace graphs {
@@ -70,13 +71,15 @@ public:
     {
         this->verticesCount = verticesCount;
         adjMatrix = new bool*[verticesCount];
-        used = new bool[verticesCount];
-        color = new int[verticesCount];
+
         for (int i = 0; i < verticesCount; i++)
         {
             adjMatrix[i] = new bool[verticesCount];
-            used[i] = false;
-            color[i] = 0;
+
+            used.push_back(false);
+            color.push_back(0);
+            breadth.push_back(-1);
+
             for (int j = 0; j < verticesCount; j++)
                 adjMatrix[i][j] = false;
         }
@@ -109,6 +112,28 @@ public:
         return v;
     }
 
+    std::vector<int> bfs(int v)
+    {
+        if (v >= verticesCount)
+            exit(-1);
+        std::vector<int> visited;
+        breadth[v] = 0;
+        visited.push_back(v);
+        while (!visited.empty())
+        {
+            int u = visited.back();
+            visited.pop_back();
+            for (size_t i = 0; i < verticesCount; i++)
+                if (adjMatrix[u][i] && breadth[i] == -1)
+                {
+                    breadth[i] = breadth[u] + 1;
+                    visited.push_back(i);
+                }
+        }
+        
+        return breadth;
+    }
+
     void toString()
     {
         for (int i = 0; i < verticesCount; i++)
@@ -132,8 +157,11 @@ private:
 
 // for dfs
 private:
-    bool* used;
-    int* color; // 0 - not entered; 1 - entered; 2 - left
+    std::vector<bool> used;
+    std::vector<int> color; // 0 - not entered; 1 - entered; 2 - left
+
+private:
+    std::vector<int> breadth;
 };
 
 } } // algoruthms::graphs
