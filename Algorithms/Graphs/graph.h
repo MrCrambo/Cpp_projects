@@ -78,7 +78,9 @@ public:
 
             used.push_back(false);
             color.push_back(0);
+
             breadth.push_back(-1);
+            path.push_back(-1);
 
             for (int j = 0; j < verticesCount; j++)
                 adjMatrix[i][j] = false;
@@ -99,6 +101,9 @@ public:
 
     int dfs(int v)
     {
+        if (v >= verticesCount)
+            exit(-1);
+
         used[v] = true;
         color[v] = 1;
         for (int i = 0; i < verticesCount; i++)
@@ -116,6 +121,7 @@ public:
     {
         if (v >= verticesCount)
             exit(-1);
+
         std::vector<int> visited;
         breadth[v] = 0;
         visited.push_back(v);
@@ -128,10 +134,23 @@ public:
                 {
                     breadth[i] = breadth[u] + 1;
                     visited.push_back(i);
+                    path[i] = u;
                 }
         }
         
         return breadth;
+    }
+
+    std::vector<int> getPath(int from, int to)
+    {
+        std::vector<int> p;
+        auto b = bfs(from);
+        while (to != -1)
+        {
+            p.push_back(to);
+            to = path[to];
+        }
+        return p;
     }
 
     void toString()
@@ -162,6 +181,7 @@ private:
 
 private:
     std::vector<int> breadth;
+    std::vector<int> path;
 };
 
 } } // algoruthms::graphs
